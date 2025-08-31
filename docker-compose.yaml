@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  flask-iot:
+    build:
+      context: ./devices
+    container_name: iot-flask
+    networks:
+      - iot-net
+    ports:
+      - "5000:5000"         
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    networks:
+      - iot-net
+    ports:
+      - "9090:9090"     
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    networks:
+      - iot-net
+    ports:
+      - "3000:3000" 
+    restart: unless-stopped
+
+networks:
+  iot-net:
+    driver: bridge
+

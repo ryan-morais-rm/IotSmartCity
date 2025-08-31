@@ -1,5 +1,4 @@
-from flask import Flask, jsonify, Response
-from prometheus_client import generate_latest, Gauge, CollectorRegistry
+from flask import Flask, jsonify
 from SmartTv import SmartTv
 from SmartLight import SmartLight
 from SmartWashingMachine import SmartWashingMachine
@@ -19,24 +18,6 @@ devices = {
     "washer": DeviceWashingMachine
 }
 
-registry = CollectorRegistry()
-
-cpu_gauges = {}
-mem_gauges = {}
-net_gauges = {}
-
-for name, device in devices.items():
-    cpu_gauges[name] = Gauge(f"{name}_cpu_usage", f"CPU usage for {name}", registry=registry)
-    mem_gauges[name] = Gauge(f"{name}_memory_usage", f"Memory usage for {name}", registry=registry)
-    net_gauges[name] = Gauge(f"{name}_network_usage", f"Network usage for {name}", registry=registry)
-
-def update_metrics():
-    for name, device in devices.items():
-        cpu_gauges[name].set(device.getCpuUsage())
-        mem_gauges[name].set(device.getMemUsage())
-        net_gauges[name].set(device.getNetworkUsage())
-
-
 @app.route("/")
 def home():
     return jsonify({
@@ -54,8 +35,26 @@ def list_devices():
 
 @app.route("/metrics")
 def metrics():
-    update_metrics()
-    return Response(generate_latest(registry), mimetype="text/plain")
+    return jsonify({
+        "tv": {
+            "state": DeviceSmartTv.getCurrentState(),
+            "cpu": DeviceSmartTv.getCpuUsage(),
+            "memory": DeviceSmartTv.getMemUsage(),
+            "network": DeviceSmartTv.getNetworkUsage()
+        },
+        "light": {
+            "state": DeviceSmartLight.getCurrentState(),
+            "cpu": DeviceSmartLight.getCpuUsage(),
+            "memory": DeviceSmartLight.getMemUsage(),
+            "network": DeviceSmartLight.getNetworkUsage()
+        },
+        "washer": {
+            "state": DeviceWashingMachine.getCurrentState(),
+            "cpu": DeviceWashingMachine.getCpuUsage(),
+            "memory": DeviceWashingMachine.getMemUsage(),
+            "network": DeviceWashingMachine.getNetworkUsage()
+        }
+    })
 
 @app.route("/tv")
 def tv_info():
