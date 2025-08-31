@@ -18,17 +18,17 @@ class Device:
         
         for i in range(cpu_start, cpu_max+1, 2):
             self.__cpuUsageList.append(i)
-        for i in range(cpu_max, cpu_start-1, -2):
+        for i in range(cpu_max, cpu_start-2, -4):
             self.__cpuUsageList.append(i)
 
         for i in range(mem_start, mem_max+1, 64):
             self.__memUsageList.append(i)
-        for i in range(mem_max, mem_start-1, -64):
+        for i in range(mem_max, mem_start-2, -64):
             self.__memUsageList.append(i)
 
-        for i in range(net_start, net_max+1, 10):
+        for i in range(net_start, net_max+2, 10):
             self.__netUsageList.append(i)
-        for i in range(net_max, net_start-1, -10):
+        for i in range(net_max, net_start-1, -20):
             self.__netUsageList.append(i)
     
     def describeDevice(self):
