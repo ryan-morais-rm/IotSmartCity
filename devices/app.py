@@ -1,9 +1,9 @@
 import random
 from flask import Flask, jsonify, Response
 from prometheus_client import generate_latest, Gauge, CollectorRegistry
-from SmartTv import SmartTv
-from SmartLight import SmartLight
-from SmartWashingMachine import SmartWashingMachine
+from devices.principals.SmartTv import SmartTv
+from devices.principals.SmartLight import SmartLight
+from devices.principals.SmartWashingMachine import SmartWashingMachine
 
 
 app = Flask(__name__)
@@ -71,8 +71,6 @@ def update_metrics():
         cpu_gauges[name].set(device._cpu_value)
         mem_gauges[name].set(device._mem_value)
         net_gauges[name].set(device._net_value)
-
-
 
 @app.route("/")
 def home():

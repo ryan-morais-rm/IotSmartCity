@@ -1,8 +1,8 @@
 import time
 from flask import Flask, jsonify 
-from SmartTv import SmartTv
-from SmartLight import SmartLight
-from SmartWashingMachine import SmartWashingMachine 
+from devices.principals.SmartTv import SmartTv
+from devices.principals.SmartLight import SmartLight
+from devices.principals.SmartWashingMachine import SmartWashingMachine 
 
 app = Flask(__name__) 
 

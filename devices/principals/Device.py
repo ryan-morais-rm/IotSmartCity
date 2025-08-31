@@ -1,4 +1,3 @@
-import random 
 
 class Device:
     def __init__(self, kind:str, ipAddress:str, brand:str, currentState:bool, availableMEM:int, availableCPU:int, availableDISK:int):
