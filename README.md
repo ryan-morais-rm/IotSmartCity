@@ -7,8 +7,7 @@ Avaliação de desempenho de redes de computadores
 Paulo Ditarso Maciel Júnior
 
 ## Alunos
-Ryan de Morais Correia 
-Victor Henrique Santos Ferreira
+Ryan de Morais Correia | Victor Henrique Santos Ferreira
 
 ## Descrição
 Este projeto simula uma rede de **IoT heterogênea** em um ambiente de **Smart City**, utilizando três dispositivos inteligentes:
