@@ -14,23 +14,7 @@ O objetivo é **emular o funcionamento dos dispositivos**, gerar métricas de CP
 
 ## Estrutura do Projeto
 
-IotSmartCity/
-├── devices/
-│ ├── app.py # API Flask principal
-│ ├── Device.py # Classe base para dispositivos
-│ ├── SmartLight.py
-│ ├── SmartTv.py
-│ ├── SmartWashingMachine.py
-│ ├── requirements.txt
-│ ├── Dockerfile # Dockerfile da API
-├── docker-compose.yaml # Orquestração Docker
-├── network/
-│ └── configuration.sh # Configuração de rede (opcional)
-├── prometheus/
-│ └── prometheus.yml # Configuração do Prometheus
-├── README.md
-└── ...
-
+<img width="1276" height="925" alt="image" src="https://github.com/user-attachments/assets/2b2b5bef-97e0-4a35-b6a6-8677038f1f2f" />
 
 ---
 
